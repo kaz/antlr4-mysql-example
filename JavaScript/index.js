@@ -17,8 +17,9 @@ MySqlParserListener.prototype.exitEveryRule = ctx => {
 	depth--;
 };
 
-const sql = fs.readFileSync("../target.sql", "utf8");
-const parser = new MySqlParser(new antlr4.CommonTokenStream(new MySqlLexer(new CaseInsensitiveInputStream(new antlr4.InputStream(sql), true))));
+const stream = new antlr4.FileStream("../target.sql", true);
+
+const parser = new MySqlParser(new antlr4.CommonTokenStream(new MySqlLexer(new CaseInsensitiveInputStream(stream, true))));
 const listener = new MySqlParserListener();
 
 antlr4.tree.ParseTreeWalker.DEFAULT.walk(listener, parser.root());
