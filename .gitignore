@@ -1,3 +1,7 @@
 JavaScript/node_modules
-parser/*
-!parser/.keep
+JavaScript/parser/*
+!JavaScript/parser/.keep
+
+go.*
+Golang/parser/*
+!Golang/parser/.keep

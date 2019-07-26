@@ -5,7 +5,7 @@ FROM   ((SELECT p.id                            AS p_id,
                 Count(DISTINCT pa_0.account_id) AS p_account_sum,
                 Count(DISTINCT pr.resource_id)  AS p_resource_sum,
                 p.network_id                    AS p_nwid,
-                fp.`favourite`                  AS fp_p
+                fp.favourite                    AS fp_p
          FROM   project AS p
                 LEFT JOIN project_account AS pa_0
                        ON pa_0.project_id = p.id
@@ -27,7 +27,7 @@ FROM   ((SELECT p.id                            AS p_id,
                 Count(DISTINCT pa_1.account_id) AS p_account_sum,
                 Count(DISTINCT pr.resource_id)  AS p_resource_sum,
                 p.network_id                    AS p_nwid,
-                fp.`favourite`                  AS fp_p
+                fp.favourite                    AS fp_p
          FROM   project AS p
                 LEFT JOIN project_account AS pa_1
                        ON pa_1.project_id = p.id
@@ -36,7 +36,7 @@ FROM   ((SELECT p.id                            AS p_id,
                             AND pr.status != 2 )
                 INNER JOIN project_group AS pg
                         ON pg.project_id = p.id
-                INNER JOIN `group` AS g
+                INNER JOIN agroup AS g
                         ON g.id = pg.group_id
                 INNER JOIN group_account AS ga
                         ON ga.group_id = g.id
