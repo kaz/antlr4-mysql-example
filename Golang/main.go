@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"io/ioutil"
 	"reflect"
 	"strings"
 
@@ -27,12 +26,12 @@ func (pl *parserListener) ExitEveryRule(ctx antlr.ParserRuleContext) {
 }
 
 func main() {
-	sql, err := ioutil.ReadFile("../target.sql")
+	stream, err := antlr.NewFileStream("../target.sql")
 	if err != nil {
 		panic(err)
 	}
 
-	psr := parser.NewMySqlParser(antlr.NewCommonTokenStream(parser.NewMySqlLexer(NewCaseChangingStream(antlr.NewInputStream(string(sql)), true)), 0))
+	psr := parser.NewMySqlParser(antlr.NewCommonTokenStream(parser.NewMySqlLexer(NewCaseChangingStream(stream, true)), 0))
 	listener := &parserListener{}
 
 	antlr.ParseTreeWalkerDefault.Walk(listener, psr.Root())
