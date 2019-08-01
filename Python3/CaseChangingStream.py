@@ -1,6 +1,6 @@
 from antlr4 import InputStream
 
-class CaseChangingInputStream():
+class CaseChangingStream():
 	def __init__(self, stream: InputStream, upper: bool):
 		self._stream = stream
 		self._upper = upper

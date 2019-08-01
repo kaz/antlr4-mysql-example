@@ -5,7 +5,7 @@ from antlr4 import *
 from MySqlLexer import MySqlLexer
 from MySqlParser import MySqlParser
 from MySqlParserListener import MySqlParserListener
-from CaseChangingInputStream import CaseChangingInputStream
+from CaseChangingStream import CaseChangingStream
 
 class Listener(MySqlParserListener):
 	def __init__(self):
@@ -20,7 +20,7 @@ class Listener(MySqlParserListener):
 
 stream = FileStream("../target.sql")
 
-parser = MySqlParser(CommonTokenStream(MySqlLexer(CaseChangingInputStream(stream, True))))
+parser = MySqlParser(CommonTokenStream(MySqlLexer(CaseChangingStream(stream, True))))
 listener = Listener()
 
 ParseTreeWalker().walk(listener, parser.root())
