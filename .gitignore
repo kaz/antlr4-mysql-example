@@ -9,3 +9,7 @@ Golang/parser/*
 Python3/__pycache__
 Python3/parser/*
 !Python3/parser/.keep
+
+*.pyc
+Python2/parser/*
+!Python2/parser/.keep

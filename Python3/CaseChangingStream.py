@@ -1,14 +1,12 @@
-from antlr4 import InputStream
-
 class CaseChangingStream():
-	def __init__(self, stream: InputStream, upper: bool):
+	def __init__(self, stream, upper):
 		self._stream = stream
 		self._upper = upper
 
-	def __getattr__(self, name: str):
+	def __getattr__(self, name):
 		return self._stream.__getattribute__(name)
 
-	def LA(self, offset: int):
+	def LA(self, offset):
 		c = self._stream.LA(offset)
 		if c <= 0:
 			return c
