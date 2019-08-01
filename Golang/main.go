@@ -10,19 +10,19 @@ import (
 )
 
 type (
-	parserListener struct {
+	Listener struct {
 		*parser.BaseMySqlParserListener
 
 		depth int
 	}
 )
 
-func (pl *parserListener) EnterEveryRule(ctx antlr.ParserRuleContext) {
-	fmt.Println(strings.Repeat("  ", pl.depth), reflect.TypeOf(ctx))
-	pl.depth += 1
+func (l *Listener) EnterEveryRule(ctx antlr.ParserRuleContext) {
+	fmt.Println(strings.Repeat("  ", l.depth), reflect.TypeOf(ctx))
+	l.depth += 1
 }
-func (pl *parserListener) ExitEveryRule(ctx antlr.ParserRuleContext) {
-	pl.depth -= 1
+func (l *Listener) ExitEveryRule(ctx antlr.ParserRuleContext) {
+	l.depth -= 1
 }
 
 func main() {
@@ -32,7 +32,7 @@ func main() {
 	}
 
 	psr := parser.NewMySqlParser(antlr.NewCommonTokenStream(parser.NewMySqlLexer(NewCaseChangingStream(stream, true)), 0))
-	listener := &parserListener{}
+	listener := &Listener{}
 
 	antlr.ParseTreeWalkerDefault.Walk(listener, psr.Root())
 }
