@@ -6,5 +6,6 @@ go.*
 Golang/parser/*
 !Golang/parser/.keep
 
+Python3/__pycache__
 Python3/parser/*
 !Python3/parser/.keep

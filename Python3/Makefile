@@ -1,6 +1,6 @@
 .PHONY: bench
 bench: parser/MySqlLexer.py parser/MySqlParser.py
-	time python main.py
+	time python3 main.py
 
 parser/MySqlLexer.py parser/MySqlParser.py: parser/antlr.jar parser/MySqlLexer.g4 parser/MySqlParser.g4
 	java -jar $< -Dlanguage=Python3 $(@D)/*.g4
